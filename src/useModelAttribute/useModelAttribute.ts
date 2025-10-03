@@ -8,6 +8,7 @@ import {
   useObjectsEventsListeners,
 } from '../useObjectsEventsListeners';
 import getDefaultWatchEvents from './getDefaultWatchEvents';
+import useDidUpdateEffect from '../useObjectGetter/useDidUpdateEffect';
 
 /**
  * Function that receives two arguments:
@@ -118,6 +119,8 @@ function useModelAttribute<
     () => (model ? getDefaultWatchEvents(model, name) : []),
     [model, name],
   );
+
+  useDidUpdateEffect(handleChange, [handleChange]);
 
   useObjectEventListener(
     model,

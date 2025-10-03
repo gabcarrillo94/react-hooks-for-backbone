@@ -5,6 +5,7 @@ import createEmptyObject from '../utils/createEmptyObject';
 import getChangeEvent from '../utils/getChangeEvent';
 import getChanges from './getChanges';
 import isEmptyObject from './isEmptyObject';
+import useDidUpdateEffect from '../useObjectGetter/useDidUpdateEffect';
 
 /**
  * React.js Hook that provides the Backbone.js Model's attributes as an object.
@@ -53,6 +54,8 @@ function useModelAttributes<
       );
     });
   }, [model]);
+
+  useDidUpdateEffect(handleChange, [handleChange]);
 
   useEffect(() => {
     if (!model) return;
